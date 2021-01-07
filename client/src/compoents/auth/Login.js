@@ -48,9 +48,6 @@ class Login extends Component {
             }
 
         }
-        console.log(" //  if authenticated close modal")
-        console.log(isAuthenticated)
-
         //  if authenticated close modal
         if (isAuthenticated) {
             this.props.history.push("/");
@@ -78,13 +75,16 @@ class Login extends Component {
         // attemt to register
         this.props.login(User)
     }
+    componentDidMount() {
+        document.title = `GoMovie - Login`;
+    }
     render() {
         return (
             <div className="our-story-container">
                 <div className="our-story-card hero-card hero_fuji vlv" data-uia-our-story="hero_fuji" data-uia="our-story-card">
                     <div className="our-story-card-background">
                         <div className="concord-img-wrapper" data-uia="concord-img-wrapper">
-                            <img className="concord-img vlv-creative" src="https://assets.nflxext.com/ffe/siteui/vlv3/313d8f80-3110-4e84-a246-22059403155e/b46d3871-6787-458c-ad33-42b835f5de91/PH-en-20201214-popsignuptwoweeks-perspective_alpha_website_small.jpg" srcSet="https://assets.nflxext.com/ffe/siteui/vlv3/313d8f80-3110-4e84-a246-22059403155e/b46d3871-6787-458c-ad33-42b835f5de91/PH-en-20201214-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/313d8f80-3110-4e84-a246-22059403155e/b46d3871-6787-458c-ad33-42b835f5de91/PH-en-20201214-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/313d8f80-3110-4e84-a246-22059403155e/b46d3871-6787-458c-ad33-42b835f5de91/PH-en-20201214-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w" alt="" />
+                            <img className="concord-img vlv-creative" src="https://assets.nflxext.com/ffe/siteui/vlv3/313d8f80-3110-4e84-a246-22059403155e/b46d3871-6787-458c-ad33-42b835f5de91/PH-en-20201214-popsignuptwoweeks-perspective_alpha_website_small.jpg" srcSet="https://assets.nflxext.com/ffe/siteui/vlv3/313d8f80-3110-4e84-a246-22059403155e/b46d3871-6787-458c-ad33-42b835f5de91/PH-en-20201214-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/313d8f80-3110-4e84-a246-22059403155e/b46d3871-6787-458c-ad33-42b835f5de91/PH-en-20201214-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/313d8f80-3110-4e84-a246-22059403155e/b46d3871-6787-458c-ad33-42b835f5de91/PH-en-20201214-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w" alt="go-movie-background" />
                             <div className="concord-img-gradient"></div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@ class Login extends Component {
                         </div>
                         <div className="our-story-card-img-container">
                             <div className="our-story-card-animation-container">
-                                <img alt="" className="our-story-card-img" src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" data-uia="our-story-card-img" />
+                                <img alt="go-movie-ourStory-desktop" className="our-story-card-img" src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" data-uia="our-story-card-img" />
                                 <div className="our-story-card-animation">
                                     <video className="our-story-card-video" autoPlay="" playsInline="" muted="" loop="">
                                         <source src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-0819.m4v" type="video/mp4" />

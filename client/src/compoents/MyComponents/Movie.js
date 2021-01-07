@@ -13,7 +13,7 @@ const setVoteClass = (vote) => {
 const Movie = ({ title, poster_path, overview, vote_average }) =>
 (
     <div className="movie">
-        <img src={poster_path ? IMG_API + poster_path : `https://media.comicbook.com/files/img/default-movie.png`} alt={title} />
+        <img src={poster_path ? IMG_API + poster_path : `https://media.comicbook.com/files/img/default-movie.png`} alt={"go-movie" + title} />
         <div className="movie-info">
             <h5>{title}</h5>
             <span className={`tag ${setVoteClass(vote_average)}`}>{vote_average}</span>

@@ -1,184 +1,3 @@
-// import React, { Component } from 'react';
-// import { connect } from "react-redux";
-// import PropTypes from "prop-types";
-// import { getMovieDetail, getMovieVideos, getCasts, getSimilarMovie } from "../actions/movieActions";
-// import { Modal, ModalHeader, ModalBody } from 'reactstrap';
-// import ReactPlayer from "react-player"
-// import ReactStars from "react-star-rating-component"
-// import FooterInfo from './MyComponents/FooterInfo';
-// import { Link } from 'react-router-dom';
-
-// class Moviedetail extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             isOpen: false,
-//             name: '',
-//             isLoading: false
-//         }
-//     }
-
-//     fetchMovies = () => {
-//         this.setState({
-//             isLoading: true
-//         })
-//         const movieId = this.props.match.params.id
-
-//         const promise1 = new Promise((resolve, reject) => {
-//             return this.props.getMovieDetail(movieId)
-//         });
-//         const promise2 = new Promise((resolve, reject) => {
-//             return this.props.getCasts(movieId)
-//         });
-//         const promise3 = new Promise((resolve, reject) => {
-//             return this.props.getSimilarMovie(movieId)
-//         });
-//         Promise.all([promise1, promise2, promise3])
-//     }
-//     componentDidMount() {
-//         this.fetchMovies()
-//     }
-//     toggle = (id) => {
-//         this.setState({
-//             isOpen: !this.state.isOpen
-//         })
-//         this.props.getMovieVideos(id)
-//     };
-//     moviePlayerModal(detail) {
-//         const youtubeUrl = "https://www.youtube.com/watch?v="
-//         const movieVideo = this.props.movieVideo.movieVideo;
-//         console.log(movieVideo)
-//         return (
-//             <Modal size="lg" isOpen={this.state.isOpen} toggle={this.toggle}>
-//                 <ModalHeader toggle={this.toggle}><h4 style={{ color: "#000" }}>{detail.title}</h4></ModalHeader>
-//                 <ModalBody style={{ backgroundColor: "#000" }}>
-//                     <ReactPlayer className="container-fluid"
-//                         url={youtubeUrl + movieVideo.key}
-//                         playing
-//                         width="100%"
-//                     />
-//                 </ModalBody>
-//             </Modal>
-//         )
-//     }
-//     render() {
-//         const detail = this.props.movieDetail.movieDetail;
-//         const { movieCast, similarMovies } = this.props.movieDetail;
-//         return (
-//             <div className="container">
-//                 <div className="row mt-2">
-//                     <div className="col text-center" style={{ width: "100%" }}>
-//                         <img className="img-fluid" src={`https://image.tmdb.org/t/p/original${detail.backdrop_path}`} alt={detail.title} />
-//                         <div style={{ textAlign: "center", marginTop: -350 }} >
-//                             <i className="fa fa-play-circle" style={{ fontSize: 95, color: "rgb(229, 9, 20)", cursor: "pointer" }} onClick={() => this.toggle(detail.id)} />
-//                         </div>
-//                         <div style={{ textAlign: "center", fontSize: 35, marginTop: 90, padding: 35 }} >
-//                             {detail.title}
-//                         </div>
-//                     </div>
-//                     {this.moviePlayerModal(detail)}
-//                 </div>
-//                 <div className="row mt-5">
-//                     <div className="col">
-//                         <p style={{ color: "#5a606b", fontWeight: "bolder" }}>GENRE</p>
-//                     </div>
-//                 </div>
-//                 <div className="row mt-3">
-//                     <div className="col">
-//                         <ul className="list-inline">
-//                             {
-//                                 detail.length === 0 ? '' :
-//                                     detail.genres.map((val, index) => {
-//                                         return (
-//                                             <li className="list-inline-item" key={index}>
-//                                                 <button type="button" className="btn btn-outline-info" onClick={() => this.getMovieByGenre(val.id)}>
-//                                                     {val.name}
-//                                                 </button>
-//                                             </li>
-//                                         )
-//                                     })}
-//                         </ul>
-//                     </div>
-//                 </div>
-//                 <div className="row mt-3">
-//                     <div className="col">
-//                         <ReactStars starCount={detail.vote_average} value={detail.vote_average} activeColor={"red"} inactiveColor={'#ddd'} />
-//                     </div>
-//                 </div>
-//                 <div className="row mt-3">
-//                     <div className="col">
-//                         <p style={{ color: "#5a606b", fontWeight: "bolder" }}>OVERVIEW</p>
-//                     </div>
-//                 </div>
-//                 <div className="row mt-2">
-//                     <div className="col">
-//                         <p style={{ color: "#fff" }}>{detail.overview}</p>
-//                     </div>
-//                 </div>
-//                 <div className="row mt-3">
-//                     <div className="col">
-//                         <p style={{ color: "#5a606b", fontWeight: "bolder" }}>CAST</p>
-//                     </div>
-//                 </div>
-//                 <div className="row mt-3">
-//                     {
-//                         movieCast.length === 0 ? '' :
-//                             movieCast.slice(0, 4).map((val, index) => {
-//                                 return (
-//                                     <div className="col-md-3 col-sm-6 text-center" key={index}>
-//                                         <img className="img-fluid rounded-circle mx-auto d-block" src={val.profileImg} alt={val.name} />
-//                                         <p className="font-weight-bold">{val.name}</p>
-//                                         <p className="font-weight-light " style={{ color: "#5a606b" }}>Trending for {val.known}</p>
-//                                     </div>
-//                                 )
-//                             })
-//                     }
-//                 </div>
-//                 <div className="row mt-3">
-//                     <div className="col">
-//                         <p style={{ color: "#5a606b", fontWeight: "bolder" }}>SIMILAR MOVIES</p>
-//                     </div>
-//                 </div>
-//                 <div className="row mt-3">
-//                     {
-//                         similarMovies.length === 0 ? '' :
-//                             similarMovies.slice(0, 4).map((val, index) => {
-//                                 return (
-//                                     <div className="col-md-3 col-sm-6" key={index} onClick={() => this.fetchMovies()}>
-//                                         <div className="card">
-//                                             <Link to={`/movie/${val.id}`}>
-//                                                 <img className="img-fluid" src={val.poster} alt={val.title} />
-//                                             </Link>
-//                                         </div>
-//                                         <div className="mt-3">
-//                                             <p style={{ fontWeight: "bold" }}>{val.title}</p>
-//                                             <p>Rated: {val.rating}</p>
-//                                             <ReactStars starCount={val.rating} value={val.rating} activeColor={"#fc10f"} inactiveColor={'#ddd'} />
-//                                         </div>
-//                                     </div>
-//                                 )
-//                             })
-//                     }
-//                 </div>
-//                 <FooterInfo />
-//             </div>
-//         );
-//     }
-// }
-// Moviedetail.propTypes = {
-//     getMovieDetail: PropTypes.func.isRequired,
-//     getCasts: PropTypes.func.isRequired,
-//     getMovieVideos: PropTypes.func.isRequired,
-//     movieDetail: PropTypes.object.isRequired,
-//     movieVideo: PropTypes.object.isRequired,
-//     movieCast: PropTypes.object.isRequired,
-// }
-// const mapStateToProps = (state) => ({
-//     movieDetail: state.movie,
-//     movieVideo: state.movie,
-//     movieCast: state.movie,
-// })
-// export default connect(mapStateToProps, { getMovieDetail, getMovieVideos, getCasts, getSimilarMovie })(Moviedetail);
 import React, { useEffect, useState, Fragment } from 'react';
 import {
     getMovieDetail,
@@ -305,7 +124,7 @@ function Moviedetail({ match }) {
                 <div className="container">
                     <div className="row mt-2">
                         <div className="col text-center" style={{ width: "100%" }}>
-                            <img className="img-fluid" src={`https://image.tmdb.org/t/p/original${detail.backdrop_path}`} alt={detail.title} />
+                            <img className="img-fluid" src={`https://image.tmdb.org/t/p/original${detail.backdrop_path}`} alt={"go-movie" + detail.title} />
                             <div style={{ textAlign: "center", marginTop: -350 }} >
                                 <i className="fa fa-play-circle" style={{ fontSize: 95, color: "rgb(229, 9, 20)", cursor: "pointer" }} onClick={toggle} />
                             </div>
@@ -366,7 +185,7 @@ function Moviedetail({ match }) {
                                 cast.slice(0, 4).map((val, index) => {
                                     return (
                                         <div className="col-md-3 col-sm-6 text-center" key={index}>
-                                            <img className="img-fluid rounded-circle mx-auto d-block" src={val.profileImg} alt={val.name} />
+                                            <img className="img-fluid rounded-circle mx-auto d-block" src={val.profileImg} alt={"go-movie" + val.name} />
                                             <p className="font-weight-bold">{val.name}</p>
                                             <p className="font-weight-light " style={{ color: "#5a606b" }}>Trending for {val.known}</p>
                                         </div>
@@ -387,7 +206,7 @@ function Moviedetail({ match }) {
                                         <div className="col-md-3 col-sm-6" key={index}>
                                             <div className="card">
                                                 <Link to={`/movie/${val.id}`}>
-                                                    <img className="img-fluid" src={val.poster} alt={val.title} />
+                                                    <img className="img-fluid" src={val.poster} alt={"go-movie" + val.title} />
                                                 </Link>
                                             </div>
                                             <div className="mt-3">
