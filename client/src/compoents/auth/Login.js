@@ -76,7 +76,7 @@ class Login extends Component {
         this.props.login(User)
     }
     componentDidMount() {
-        document.title = `GoMovie - Login`;
+        document.title = `Login | GoMovie`;
     }
     render() {
         return (

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import FooterInfo from './MyComponents/FooterInfo';
 class LandingPage extends Component {
-    componentDidMount() {
-        document.title = `GoMovie`;
-    }
     render() {
         return (
             <div className="our-story-container">

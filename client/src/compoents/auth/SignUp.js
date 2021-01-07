@@ -61,7 +61,7 @@ class SignUp extends Component {
         })
     };
     componentDidMount() {
-        document.title = `GoMovie - Singup`;
+        document.title = `Singup | GoMovie`;
     }
     render() {
         return (

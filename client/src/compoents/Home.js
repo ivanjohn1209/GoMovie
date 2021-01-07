@@ -40,10 +40,6 @@ function Home() {
             setmMovieList(res)
         });
     }
-    const fetchMore = () => {
-        setIsShow(isShow + 1)
-        setIsNotShow(isNotShow + 1)
-    }
     useEffect(() => {
         const fetchAPI = () => {
             setIsLoading(true)
@@ -85,7 +81,7 @@ function Home() {
 
         fetchAPI()
     }, [])
-    document.title = `GoMovie - Movies`;
+    document.title = `Movies | GoMovie`;
 
     return (
         <Fragment>
