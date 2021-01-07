@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import ReactStars from "react-star-rating-component"
 import FooterInfo from './MyComponents/FooterInfo';
 import Ellipsis from './MyComponents/loading';
+import { Helmet } from 'react-helmet'
+const TITLE = `Movie | GoMovie`;
 const config = {
     dots: false,
     infinite: true,
@@ -32,8 +34,7 @@ function Home() {
     const [persons, setPersons] = useState([]);
     const [topRatedMovies, setTopRatedMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [isShow, setIsShow] = useState(4);
-    const [isNotShow, setIsNotShow] = useState(0);
+
 
     const getMovieBySelectedGenre = (id) => {
         getMovieByGenre(id).then((res) => {
@@ -81,10 +82,11 @@ function Home() {
 
         fetchAPI()
     }, [])
-    document.title = `Movies | GoMovie`;
-
     return (
         <Fragment>
+            <Helmet>
+                <title>{TITLE}</title>
+            </Helmet>
             <AppNavbar />
             {
                 isLoading ?
