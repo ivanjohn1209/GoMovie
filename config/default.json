@@ -1,0 +1,4 @@
+{
+    "MONGOURI": "mongodb+srv://admin:YUB8OAIDyPrmZq0o@cluster0.ypohu.mongodb.net/go_movie?retryWrites=true&w=majority",
+    "jwtSecret": "sl_JwtSecret"
+}
