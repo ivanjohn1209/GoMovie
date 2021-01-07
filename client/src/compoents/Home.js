@@ -85,6 +85,7 @@ function Home() {
 
         fetchAPI()
     }, [])
+    document.title = `GoMovie - Movies`;
 
     return (
         <Fragment>
