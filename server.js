@@ -26,25 +26,58 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/movies', require('./routes/api/movies'));
 app.use('/api/auth', require('./routes/api/auth'));
 
-// change Meta Tags
-app.get('/home', (request, response) => {
-    console.log('Home page visited!sdasdasda');
-    const filePath = path.resolve(__dirname, 'client', 'build', 'index.html');
 
-    // read in the index.html file
+app.get('/', (request, response) => {
+    const filePath = path.resolve(__dirname, 'client', 'build', 'index.html');
     fs.readFile(filePath, 'utf-8', function (err, data) {
         if (err) {
             return console.log(err);
         }
-        // replace the special strings with server generated strings
-        data = data.replace(/\$OG_TITLE/g, 'Home Page');
-        data = data.replace(/\$OG_DESCRIPTION/g, "Home page description");
+        data = data.replace(/\$OG_TITLE/g, 'GoMovie | Watch Moviea');
+        data = data.replace(/\$OG_DESCRIPTION/g, "At GoMovie, we want to entertain the world. Whatever your taste, and no matter where you live, we give you access to best-in-class TV shows, movies and documentaries.");
         result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png');
         response.send(result);
     });
 });
 
 
+app.get('/home', (request, response) => {
+    const filePath = path.resolve(__dirname, 'client', 'build', 'index.html');
+    fs.readFile(filePath, 'utf-8', function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+        data = data.replace(/\$OG_TITLE/g, 'GoMovie: Watch Movie Online · GoMovie');
+        data = data.replace(/\$OG_DESCRIPTION/g, "Watch GoMovie movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more.");
+        result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png');
+        response.send(result);
+    });
+});
+app.get('/login', (request, response) => {
+    const filePath = path.resolve(__dirname, 'client', 'build', 'index.html');
+    fs.readFile(filePath, 'utf-8', function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+        data = data.replace(/\$OG_TITLE/g, 'Login | GoMovie');
+        data = data.replace(/\$OG_DESCRIPTION/g, "Watch GoMovie movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more, soo Login now.");
+        result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png');
+        response.send(result);
+    });
+});
+
+app.get('/signup', (request, response) => {
+    const filePath = path.resolve(__dirname, 'client', 'build', 'index.html');
+    fs.readFile(filePath, 'utf-8', function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+        data = data.replace(/\$OG_TITLE/g, 'Signup | GoMovie');
+        data = data.replace(/\$OG_DESCRIPTION/g, "Watch GoMovie movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more, soo Signup now.");
+        result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png');
+        response.send(result);
+    });
+});
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
@@ -58,91 +91,6 @@ if (process.env.NODE_ENV === 'production') {
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on ${port}`))
-
-
-
-// const express = require('express');
-// const app = express();
-// const port = process.env.PORT || 5000;
-// const path = require('path');
-// const fs = require('fs')
-
-// app.get('/', function (request, response) {
-//     console.log('Home page visited!');
-//     const filePath = path.resolve(__dirname, './build', 'index.html');
-
-//     // read in the index.html file
-//     fs.readFile(filePath, 'utf8', function (err, data) {
-//         if (err) {
-//             return console.log(err);
-//         }
-
-//         // replace the special strings with server generated strings
-//         data = data.replace(/\$OG_TITLE/g, 'Home Page');
-//         data = data.replace(/\$OG_DESCRIPTION/g, "Home page description");
-//         result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png');
-//         response.send(result);
-//     });
-// });
-
-// app.get('/about', function (request, response) {
-//     console.log('About page visited!');
-//     const filePath = path.resolve(__dirname, './build', 'index.html')
-//     fs.readFile(filePath, 'utf8', function (err, data) {
-//         if (err) {
-//             return console.log(err);
-//         }
-//         data = data.replace(/\$OG_TITLE/g, 'About Page');
-//         data = data.replace(/\$OG_DESCRIPTION/g, "About page description");
-//         result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png');
-//         response.send(result);
-//     });
-// });
-
-// app.get('/contact', function (request, response) {
-//     console.log('Contact page visited!');
-//     const filePath = path.resolve(__dirname, './build', 'index.html')
-//     fs.readFile(filePath, 'utf8', function (err, data) {
-//         if (err) {
-//             return console.log(err);
-//         }
-//         data = data.replace(/\$OG_TITLE/g, 'Contact Page');
-//         data = data.replace(/\$OG_DESCRIPTION/g, "Contact page description");
-//         result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png');
-//         response.send(result);
-//     });
-// });
-
-// app.use(express.static(path.resolve(__dirname, './build')));
-
-// app.get('*', function (request, response) {
-//     const filePath = path.resolve(__dirname, './build', 'index.html');
-//     response.sendFile(filePath);
-// });
-
-// app.listen(port, () => console.log(`Listening on port ${port}`));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

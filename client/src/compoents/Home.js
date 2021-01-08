@@ -10,8 +10,6 @@ import { Link } from 'react-router-dom';
 import ReactStars from "react-star-rating-component"
 import FooterInfo from './MyComponents/FooterInfo';
 import Ellipsis from './MyComponents/loading';
-import { Helmet } from 'react-helmet'
-const TITLE = `Movie | GoMovie`;
 const config = {
     dots: false,
     infinite: true,
@@ -84,9 +82,6 @@ function Home() {
     }, [])
     return (
         <Fragment>
-            <Helmet>
-                <title>{TITLE}</title>
-            </Helmet>
             <AppNavbar />
             {
                 isLoading ?

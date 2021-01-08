@@ -34,7 +34,6 @@ class AppNavbar extends Component {
   }
   render() {
     const { user } = this.props.auth;
-    console.log(user)
     return (
       <div>
         <Navbar color="dark" dark expand="sm" >
@@ -67,9 +66,6 @@ class AppNavbar extends Component {
                   <Logout />
                 </DropdownMenu>
               </UncontrolledDropdown>
-              {/* <NavItem>
-                <Logout />
-              </NavItem> */}
             </Nav>
           </Collapse>
         </Navbar>
