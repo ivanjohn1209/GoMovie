@@ -164,7 +164,7 @@ function getMovieDetail(id) {
         .then(res => {
             return res.data;
         })
-        .catch(err => { throw err; });
+        .catch(err => window.location.href = "/404");
 }
 
 function getCasts(id) {

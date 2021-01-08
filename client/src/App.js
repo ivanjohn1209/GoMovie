@@ -18,6 +18,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Home from "./compoents/Home";
 import MovieDetails from "./compoents/MovieDetails";
 import WatchList from "./compoents/WatchList";
+import Page404 from "./compoents/error/Page404";
 class App extends Component {
   componentDidMount() {
     this.props.loadUser();
@@ -31,6 +32,8 @@ class App extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/home" component={LandingPage} />
+        <Route path="/404" component={Page404} />
+        <Route component={Page404} />
       </Switch>
     );
   }

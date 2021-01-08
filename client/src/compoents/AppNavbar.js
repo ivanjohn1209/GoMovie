@@ -33,7 +33,8 @@ class AppNavbar extends Component {
     })
   }
   render() {
-    // const { user } = this.props.auth;
+    const { user } = this.props.auth;
+    console.log(user)
     return (
       <div>
         <Navbar color="dark" dark expand="sm" >
@@ -57,8 +58,8 @@ class AppNavbar extends Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Option 1
-                </DropdownItem>
+                    <i className="fa fa-user" aria-hidden="true" />
+                  </DropdownItem>
                   <DropdownItem>
                     Option 2
                 </DropdownItem>
