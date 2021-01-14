@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_URI || db, {
     .then(() => console.log("MONGO CONNECTED..."))
     .catch(err => console.log(err));
 
-//Use Route
+//Use RouteS
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/movies', require('./routes/api/movies'));
 app.use('/api/auth', require('./routes/api/auth'));
@@ -32,7 +32,7 @@ app.get('/', (request, response) => {
         if (err) {
             return console.log(err);
         }
-        data = data.replace(/\$OG_TITLE/g, 'GoMovie | Watch Moviea');
+        data = data.replace(/\$OG_TITLE/g, 'GoMovie | Watch Movie');
         data = data.replace(/\$OG_DESCRIPTION/g, "At GoMovie, we want to entertain the world. Whatever your taste, and no matter where you live, we give you access to best-in-class TV shows, movies and documentaries.");
         result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png');
         response.send(result);
