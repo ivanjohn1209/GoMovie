@@ -19,6 +19,7 @@ import Home from "./compoents/Home";
 import MovieDetails from "./compoents/MovieDetails";
 import WatchList from "./compoents/WatchList";
 import Page404 from "./compoents/error/Page404";
+import WatchListMovie from "./compoents/WatchListMovie";
 class App extends Component {
   componentDidMount() {
     this.props.loadUser();
@@ -28,6 +29,7 @@ class App extends Component {
       <Switch>
         <PrivateRoute exact path="/" component={Home} isAuthenticated={this.props.isAuthenticated.isAuthenticated} />
         <PrivateRoute exact path="/movie/:id" isAuthenticated={this.props.isAuthenticated.isAuthenticated} component={MovieDetails} />
+        <PrivateRoute exact path="/watch-list/:id" isAuthenticated={this.props.isAuthenticated.isAuthenticated} component={WatchListMovie} />
         <PrivateRoute exact path="/watch-list" isAuthenticated={this.props.isAuthenticated.isAuthenticated} component={WatchList} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
@@ -41,7 +43,6 @@ class App extends Component {
 App.propTypes = {
   loadUser: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.object.isRequired,
-
 }
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth,

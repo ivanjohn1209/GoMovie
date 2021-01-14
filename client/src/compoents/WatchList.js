@@ -19,7 +19,6 @@ function WatchList() {
                 setMovieList(values[0])
             })
         }
-
         fetchAPI()
     }, []);
 
@@ -36,11 +35,11 @@ function WatchList() {
                 </div>
                 <div className="row mt-3">
                     {
-                        movieList.slice(0, 4).map((val, index) => {
+                        movieList.map((val, index) => {
                             return (
                                 <div className="col-md-3 col-sm-6" key={index}>
                                     <div className="card">
-                                        <Link to={`/movie/${val.id}`}>
+                                        <Link to={`/watch-list/${val.id}-${val._id}`}>
                                             <img className="img-fluid" src={`https://image.tmdb.org/t/p/original${val.poster}`} alt={"go-movie" + val.title} />
                                         </Link>
                                     </div>
@@ -55,7 +54,7 @@ function WatchList() {
                     }
                 </div>
             </div>
-        </Fragment>
+        </Fragment >
     );
 }
 export default WatchList;

@@ -12,7 +12,8 @@ export {
     getSimilarMovie,
     getMovieVideos,
     getWatchList,
-    deleteWatchList
+    deleteWatchList,
+    getMovieWatchListDetail
 };
 
 const apiKey = `04c35731a5ee918f014970082a0088b1`;
@@ -145,7 +146,6 @@ function getTopratedMovie() {
                 overview: val['overview'],
                 rating: val['vote_average']
             }));
-            console.log(movieList)
             return movieList;
         })
         .catch(err => { throw err; });
@@ -154,6 +154,7 @@ function getTopratedMovie() {
 
 ///// MOVIE DETAILS //////
 function getMovieDetail(id) {
+
     return axios
         .get(`${movieUrl}/${id}`, {
             params: {
@@ -236,13 +237,24 @@ function getWatchList() {
         .catch(err => { throw err; });
 
 };
-function deleteWatchList() {
-    const id = "5fe8af5babffc409d0d31fb4";
-    axios
-        .delete(`/api/movies/${id}`, tokenConfig())
+function deleteWatchList(movie_id) {
+    const user_id = "5fe8af5babffc409d0d31fb4";
+    return axios
+        .delete(`/api/movies/${user_id}-${movie_id}`, tokenConfig())
         .then(res => {
-            console.log(res)
+            return res;
         })
-        .catch(err => console.log(err));
+        .catch(err => { throw err; });
 
 };
+
+function getMovieWatchListDetail(id) {
+    const user_id = "5fe8af5babffc409d0d31fb4";
+    return axios
+        .get(`/api/movies/watch-list/${user_id}/${id}`, tokenConfig())
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(err => window.location.href = "/404");
+}
+

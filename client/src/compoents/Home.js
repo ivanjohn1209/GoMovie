@@ -100,7 +100,9 @@ function Home() {
                                                         <img style={{ height: "600px", width: "100%" }} src={val.backPoster} alt={"go-movie" + val.title} />
                                                     </div>
                                                     <div style={{ textAlign: "center", marginTop: -350 }} >
-                                                        <i className="fa fa-play-circle" style={{ fontSize: 95, color: "rgb(229, 9, 20)" }} />
+                                                        <Link to={`/movie/${val.id}`}>
+                                                            <i className="fa fa-play-circle" style={{ fontSize: 95, color: "rgb(229, 9, 20)" }} />
+                                                        </Link>
                                                     </div>
                                                     <div style={{ textAlign: "center", fontSize: 35, marginTop: 90, padding: 35 }} >
                                                         {val.title}
@@ -138,7 +140,7 @@ function Home() {
                                             return (
                                                 <div key={index} >
                                                     <div className="card" style={{ margin: 5 }}>
-                                                        <Link to={`/movie/${val.id}`}>
+                                                        <Link to={`/movie/${val.id}`} >
                                                             <img className="img-fluid" src={val.poster} alt={"go-movie" + val.title} />
                                                         </Link>
                                                     </div>
@@ -214,7 +216,7 @@ function Home() {
                     </div>
             }
 
-        </Fragment>
+        </Fragment >
     );
 }
 

@@ -11,8 +11,8 @@ class Logout extends Component {
         return (
             <Fragment>
                 <DropdownItem>
-                    <a onClick={this.props.logout} href='/home'>
-                        <i className="fa fa-sign-out" aria-hidden="true" />Logout
+                    <a onClick={this.props.logout} href='/home' style={{ color: "#212529", textDecoration: "none" }}>
+                        <i className="fa fa-sign-out" aria-hidden="true" /> Logout
                 </a>
                 </DropdownItem>
             </Fragment>

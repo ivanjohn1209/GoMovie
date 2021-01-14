@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 function PrivateRoute({ component: Component, roles, isAuthenticated: authenticated, ...rest }) {
-    console.log(authenticated)
     return (
         <Route {...rest} render={props => {
             return !localStorage.getItem('token') ?

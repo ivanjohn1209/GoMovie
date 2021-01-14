@@ -1,7 +1,13 @@
 import React from 'react';
 import FooterInfo from './MyComponents/FooterInfo';
+import {
+    Button,
+} from "reactstrap"
+import { useHistory } from "react-router";
 
 function LandingPage() {
+    const history = useHistory();
+
     return (
         <div className="our-story-container">
             <div className="our-story-header-wrapper">
@@ -23,6 +29,9 @@ function LandingPage() {
                 </div>
                 <div className="our-story-card-text">
                     <h1 className="our-story-card-title">Unlimited movies, TV shows, and more.</h1>
+                    <h2 class="our-story-card-subtitle" data-uia="our-story-card-subtitle" style={{ fontSize: 25, fontWeight: "400" }}>Watch anywhere. Cancel anytime.</h2>
+                    <h3 class="email-form-title" style={{ fontSize: 20 }}>Ready to watch? Enter your email to create or restart your membership.</h3>
+                    <Button color="danger " className="getStarted" onClick={() => history.push("/login")} style={{ fontSize: 20, fontWeight: "500" }}>GET STARTED</Button>
                 </div>
                 <div className="center-pixel" style={{ position: "absolute" }}>
                 </div>
@@ -30,8 +39,8 @@ function LandingPage() {
             <div className="our-story-card animation-card watchOnTv" data-uia-our-story="watchOnTv" data-uia="our-story-card">
                 <div className="animation-card-container">
                     <div className="our-story-card-text">
-                        <h1 id="" className="our-story-card-title" data-uia="animation-card-title">Enjoy on your TV.</h1>
-                        <h2 id="" className="our-story-card-subtitle" data-uia="our-story-card-subtitle">Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</h2>
+                        <h1 className="our-story-card-title" data-uia="animation-card-title">Enjoy on your TV.</h1>
+                        <h2 className="our-story-card-subtitle" data-uia="our-story-card-subtitle">Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</h2>
                     </div>
                     <div className="our-story-card-img-container">
                         <div className="our-story-card-animation-container">

@@ -4,7 +4,8 @@ import {
     FormGroup,
     Label,
     Input,
-    Button
+    Button,
+    Alert
 } from "reactstrap"
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -16,7 +17,7 @@ class SignUp extends Component {
             name: '',
             email: '',
             password: '',
-            msg: null
+            msg: null,
 
         }
     }
@@ -24,7 +25,7 @@ class SignUp extends Component {
         const { error, isAuthenticated } = this.props
         if (error !== prevProps.error) {
             // check for register  error
-            if (error.id === "LOGIN_FAIL") {
+            if (error.id === "REGISTER_FAIL") {
                 this.setState({
                     msg: error.msg.msg
                 })
@@ -51,8 +52,10 @@ class SignUp extends Component {
             email,
             password
         }
-        // attemt to register
         this.props.register(newUser)
+
+        // attemt to register
+        // this.props.register(newUser)
     }
     onChange = (e) => {
         this.setState({
@@ -71,6 +74,7 @@ class SignUp extends Component {
                     </div>
                     <div className="login-form">
                         <h1 style={{ paddingBottom: 30 }}>Create Account</h1>
+                        {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
                         <Form onSubmit={(e) => this.onSubmit(e)}>
                             <FormGroup>
                                 <Label for="name">User Name</Label>
@@ -124,5 +128,7 @@ SignUp.propTypes = {
 const mapStateToProps = (state) => ({
     item: state.item,
     isAuthenticated: state.auth.isAuthenticated,
+    error: state.error
+
 })
 export default connect(mapStateToProps, { register })(SignUp);

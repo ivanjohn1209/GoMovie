@@ -11,58 +11,67 @@ router.get('/:id', auth, (req, res) => {
         .then(user => res.json(user.movie))
         .catch(err => res.json(err));
 })
+// router.get('/watch-list/:id/:_id', (req, res) => {
+//     User.findById(req.params.id, { 'movie': { $elemMatch: { _id: req.params._id } } }, function (err, user) {
+//         if (err) {
+//             return res.status(404).json({ msg: 'Movie Is Not Available' });
+//         }
+//         if (user) {
+//             res.send(user.movie[0])
+//         } else {
+//             return res.status(404).json({ msg: 'Movie Is Not Available' });
+//         }
 
-// @route POST api/items
+//     });
+// })
+// @route POST api/mvoie
 // @desc CREATE a items
 // @acces public
 router.post('/', auth, (req, res) => {
-    // User.findById(req.body.id)
-    //     .then(user => {
-    //         const isExist = user.movie.filter(i => i.id == req.body.movieId).length == 0;
-    //         if (isExist) {
-    //             user.movie.push({ id: movieId });
-    //             user.save()
-    //         } else {
-    //             console.log("Movie already exist")
-    //             res.send("Movie already exist")
-    //         }
-    //     })
-    //     .catch(err => console.log(err));
-    User.findByIdAndUpdate(
-        req.body.id,
-        {
-            $push: {
-                "movie": {
-                    id: req.body.movieId,
-                    backPoster: req.body.backPoster,
-                    popularity: req.body.popularity,
-                    title: req.body.title,
-                    poster: req.body.poster,
-                    overview: req.body.overview,
-                    rating: req.body.rating
-                }
-            }
-        },
-        { safe: true, upsert: true },
-        function (err, model) {
-            if (err) {
-                console.log(err);
-                return res.send(err);
-            }
-            return res.json(model);
-        });
+    User.findById(req.body.id, (err, doc) => {
+        if (err) {
+            return res.sendStatus(401);
+        }
+        let movieExist = doc.movie.filter(movies => movies.id == req.body.movieId).length !== 0;
+        if (movieExist) {
+            res.send({ msg: 'Movie Already Exist in Watchlist' });
+        } else {
+            User.findByIdAndUpdate(
+                req.body.id,
+                {
+                    $push: {
+                        "movie": {
+                            id: req.body.movieId,
+                            backPoster: req.body.backPoster,
+                            popularity: req.body.popularity,
+                            title: req.body.title,
+                            poster: req.body.poster,
+                            overview: req.body.overview,
+                            rating: req.body.rating
+                        }
+                    }
+                },
+                { safe: true, upsert: true },
+                function (err, model) {
+                    if (err) {
+                        console.log(err);
+                        return res.send(err);
+                    }
+                    return res.json(model);
+                });
+        }
+    });
 })
 
 router.delete('/:id', auth, (req, res) => {
-    const movieId = "5ff339a95901da162ccad503"
+    const id = req.params.id.split("-");
     User.findByIdAndUpdate(
-        req.params.id,
-        { $pull: { 'movie': { _id: movieId } } }, function (err, model) {
+        id[0],
+        { $pull: { 'movie': { _id: id[1] } } }, function (err, movie) {
             if (err) {
-                console.log(err);
                 return res.send(err);
             }
-            return res.json(model);
+            return res.json(movie);
         });
 })
 module.exports = router;

@@ -289,6 +289,20 @@ svg:not(:root) {
   float: right;
   text-decoration: none;
 }
+.getStarted{
+  background-color: #e50914;
+  line-height: normal;
+  padding: 7px 17px;
+  font-weight: 400;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 20px 80px;
+
+}
+.getStarted:hover{
+  background-color: #e50914;
+
+}
 .transparentButton{
   line-height: normal;
   padding: 0 10px;
